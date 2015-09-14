@@ -1,13 +1,5 @@
 #!/usr/bin/env lua
 
-function concatenate(a1, a2)
-    local a3 = a1
-    for k, v in pairs(a2) do
-        a3[1 + #a3] = v
-    end
-    return a3
-end
-
 book = {
     "Grail Diary",
     "Henry Jones",
@@ -19,11 +11,21 @@ medals = {
     "bronze",
 } 
 
-print("{")
-for k, v in pairs(concatenate(book, medals)) do
-    print(k .. ": " .. v)
+function print_table(t)
+    for k, v in pairs(t) do
+        print(k .. ": " .. v)
+    end
 end
-print("}")
+
+function concatenate(a1, a2)
+    local a3 = a1
+    for k, v in pairs(a2) do
+        a3[1 + #a3] = v
+    end
+    return a3
+end
+
+print_table(concatenate(book, medals))
 
 local _private = {}
 function strict_read(table, key)
